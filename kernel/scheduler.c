@@ -1,11 +1,11 @@
-#include "schedular.h"
+#include "scheduler.h"
 #include "task.h"
 
-void schedular_tick() {
+void scheduler_tick() {
     if (!current_task || !current_task->next)
         return;
 
-    current_task = current_task->next;   // 🔥 MOVE TO NEXT TASK
+    current_task = current_task->next;
 
     task_switch(
         current_task->esp,

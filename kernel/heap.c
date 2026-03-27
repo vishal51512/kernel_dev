@@ -8,7 +8,7 @@ static uint32_t heap_curr;
 
 void heap_init() {
     heap_curr = HEAP_START;
-//    vga_print("Kernel heap initialized\n");
+    vga_print("Kernel heap initialized\n");
 }
 
 void* kmalloc(size_t size) {

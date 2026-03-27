@@ -10,9 +10,12 @@ extern timer_handler
 
 isr_page_fault:
     pusha
+    mov eax, cr2        ; fault address
+    push eax            ; pass as argument
     call page_fault_handler
+    add esp, 4          ; remove argument
     popa
-    add esp, 4      ; error code
+    add esp, 4          ; pop error code pushed by CPU
     iretd
     
 isr_timer:
