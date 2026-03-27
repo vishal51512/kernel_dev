@@ -17,7 +17,7 @@ gcc -m32 -ffreestanding -c kernel/keyboard.c -o build/keyboard.o
 gcc -m32 -ffreestanding -c kernel/timer.c -o build/timer.o
 nasm -f elf32 kernel/task_switch.asm -o build/task_switch.o
 gcc -m32 -ffreestanding -c kernel/task.c -o build/task.o
-gcc -m32 -ffreestanding -c kernel/schedular.c -o build/scheduler.o
+gcc -m32 -ffreestanding -c kernel/scheduler.c -o build/scheduler.o
 gcc -m32 -ffreestanding -c kernel/tasks.c -o build/tasks.o
 gcc -m32 -ffreestanding -c kernel/paging.c -o build/paging.o
 gcc -m32 -ffreestanding -c kernel/heap.c -o build/heap.o

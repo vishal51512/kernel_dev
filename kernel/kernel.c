@@ -38,10 +38,9 @@ void kernel_main() {
     heap_init();
 
     vga_print("Paging + Heap OK\n");
-    // vga_print("Entering user mode...\n");
-    
-    // enter_user_mode();   // 🔥 SAFE NOW
-    
+
+    __asm__ volatile ("sti"); /* enable interrupts — timer will drive task switching */
+
     for (;;) {
         __asm__ volatile ("hlt");
     }

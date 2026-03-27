@@ -15,7 +15,7 @@ enter_user_mode:
     ; Build minimal IRET frame
     push 0x23           ; SS (user)
     push 0x00E00000     ; ESP (14MB, safe & mapped)
-    push 0x202          ; EFLAGS (IF=0, safe)
+    push 0x202          ; EFLAGS: IF=1 (interrupts enabled), reserved bit 1 set
     push 0x1B           ; CS (user)
     push user_start     ; EIP
 
