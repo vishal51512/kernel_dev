@@ -33,9 +33,9 @@ void idt_init() {
     idt_set_gate(32, (uint32_t)isr_timer,    0x8E);
     idt_set_gate(33, (uint32_t)isr_keyboard, 0x8E);
 
-    // CPU exceptions (must be callable from Ring 3)
-    idt_set_gate(13, (uint32_t)isr_gp_fault,   0xEE); // #GP
-    idt_set_gate(14, (uint32_t)isr_page_fault, 0xEE); // #PF
+    // CPU exceptions (Ring 0 only)
+    idt_set_gate(13, (uint32_t)isr_gp_fault,   0x8E); // #GP
+    idt_set_gate(14, (uint32_t)isr_page_fault, 0x8E); // #PF
     
 
     //syscall
@@ -43,4 +43,3 @@ void idt_init() {
 
     __asm__ volatile ("lidt %0" : : "m"(idtp));
 }
-

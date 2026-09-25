@@ -11,9 +11,8 @@ void tss_init() {
     tss.esp0 = 0x90000;   // kernel stack
 
     uint32_t base  = (uint32_t)&tss;
-    uint32_t limit = sizeof(tss);
+    uint32_t limit = sizeof(tss) - 1;
 
     gdt_set_gate(5, base, limit, 0x89, 0x00); // TSS descriptor
     __asm__ volatile ("ltr %%ax" :: "a"(0x28));
 }
-

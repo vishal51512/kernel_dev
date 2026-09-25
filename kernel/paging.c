@@ -4,7 +4,7 @@
 #define PAGE_PRESENT  0x1
 #define PAGE_RW       0x2
 
-#define NUM_TABLES 4
+#define NUM_TABLES 5
 
 /* * Page Directory: Holds pointers to Page Tables 
  * Aligned to 4KB (4096 bytes)
@@ -23,7 +23,7 @@ void paging_init() {
     for (int i = 0; i < 1024; i++)
         page_directory[i] = 0;
 
-    /* 2. Identity map first 16MB (Kernel + Code) */
+    /* 2. Identity map first 20MB (Kernel + Heap) */
     for (int t = 0; t < NUM_TABLES; t++) {
         for (int i = 0; i < 1024; i++) {
             page_tables[t][i] =

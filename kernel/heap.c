@@ -18,13 +18,13 @@ void* kmalloc(size_t size) {
     // Align to 8 bytes
     size = (size + 7) & ~7;
 
-    void* addr = (void*)heap_curr;
-    heap_curr += size;
-
-    if (heap_curr >= HEAP_START + HEAP_SIZE) {
+    if (heap_curr + size > HEAP_START + HEAP_SIZE) {
         vga_print("Heap overflow!\n");
         return 0;
     }
+
+    void* addr = (void*)heap_curr;
+    heap_curr += size;
 
     return addr;
 }
@@ -33,4 +33,3 @@ void kfree(void* ptr) {
     // No-op for bump allocator (yet)
     (void)ptr;
 }
-
