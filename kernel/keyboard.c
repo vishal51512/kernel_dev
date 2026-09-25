@@ -11,9 +11,15 @@ static char keymap[] =
 
 void keyboard_handler() {
     unsigned char scancode = inb(0x60);
+    unsigned int keymap_len = sizeof(keymap) - 1;
 
     if (scancode & 0x80)
         return; // key release
+
+    if (scancode >= keymap_len) {
+        outb(0x20, 0x20); // EOI to PIC
+        return;
+    }
 
     char c = keymap[scancode];
     if (c)
@@ -21,4 +27,3 @@ void keyboard_handler() {
 
     outb(0x20, 0x20); // EOI to PIC
 }
-
